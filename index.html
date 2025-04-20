@@ -126,7 +126,31 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
-        
+        /* Мобільний перемикач */
+		.language-switcher-mobile {
+			position: absolute;
+			top: 17px;
+			right: 15px;
+			z-index: 1100;
+		}
+
+		/* Десктопний перемикач */
+		.language-switcher-desktop {
+			margin-left: 15px;
+		}
+
+		/* Специфічні стилі для селектів */
+		.language-switcher-mobile select,
+		.language-switcher-desktop select {
+			padding: 5px;
+			border-radius: 4px;
+			border: 1px solid rgba(255, 255, 255, 0.2);
+			background-color: rgba(26, 26, 26, 0.7);
+			color: white;
+			cursor: pointer;
+			transition: all 0.3s;
+			backdrop-filter: blur(5px);
+		}
         /* Мобільні стилі */
         @media (max-width: 768px) {
             .hero-section {
@@ -156,11 +180,12 @@
             }
             .language-switcher {
                 top: 15px;
-                right: 15px;
+                right: 60px;
             }
             .language-switcher select {
                 padding: 4px 7px;
                 font-size: 12px;
+				background-color: rgba(26, 26, 26, 0.9); /* Краща видимість */
             }
         }
     </style>
@@ -181,7 +206,14 @@
             <a class="navbar-brand fw-bold" href="#">
     <i class="fas fa-leaf me-2"></i>
     <span data-i18n="brand">LUXURY POTS</span>
-</a>
+			</a>
+		<div class="language-switcher-mobile d-lg-none">
+            <select id="languageSelectMobile">
+                <option value="uk">UA</option>
+                <option value="en">EN</option>
+                <option value="nl">NL</option>
+            </select>
+        </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -200,6 +232,13 @@
                         <a class="nav-link" href="#contact" data-i18n="contact">Контакти</a>
                     </li>
                 </ul>
+				 <div class="language-switcher-desktop d-none d-lg-block ms-3">
+                <select id="languageSelectDesktop">
+                    <option value="uk">UA</option>
+                    <option value="en">EN</option>
+                    <option value="nl">NL</option>
+                </select>
+            </div>
             </div>
         </div>
     </nav>
@@ -565,8 +604,22 @@
                 send_request: "Verzend verzoek",
                 copyright: "&copy; 2023 Luxury Pots. Alle rechten voorbehouden."
             }
-        };
+				};
+		// Синхронізація перемикачів
+		const languageSelectMobile = document.getElementById('languageSelectMobile');
+		const languageSelectDesktop = document.getElementById('languageSelectDesktop');
 
+		if (languageSelectMobile && languageSelectDesktop) {
+			languageSelectMobile.addEventListener('change', (e) => {
+				languageSelectDesktop.value = e.target.value;
+				changeLanguage(e.target.value);
+			});
+			
+			languageSelectDesktop.addEventListener('change', (e) => {
+				languageSelectMobile.value = e.target.value;
+				changeLanguage(e.target.value);
+			});
+		}
         // Функція зміни мови
         function changeLanguage(lang) {
             // Оновлюємо всі елементи з data-i18n атрибутом
