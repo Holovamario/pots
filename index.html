@@ -19,6 +19,7 @@
             font-family: 'Raleway', sans-serif;
             background: #f9f9f9;
             color: #333;
+            padding-top: 70px;
         }
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
@@ -27,11 +28,38 @@
             background: rgba(26, 26, 26, 0.9) !important;
             backdrop-filter: blur(10px);
         }
+        
+        /* Стилі для перемикача мов */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+        }
+        .language-switcher select {
+            padding: 5px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: rgba(26, 26, 26, 0.7);
+            color: white;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .language-switcher select:hover {
+            background-color: rgba(26, 26, 26, 0.9);
+        }
+        .language-switcher select option {
+            background: var(--dark);
+        }
+        
         .hero-section {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1600566752227-8f3b9a83f0a4?ixlib=rb-4.0.3');
             background-size: cover;
             height: 100vh;
             color: white;
+            margin-top: -70px;
         }
         .product-card {
             transition: all 0.3s ease;
@@ -92,6 +120,11 @@
             font-size: 1.5rem;
             border: none;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        .floating-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
         
         /* Мобільні стилі */
@@ -121,97 +154,50 @@
             .product-card {
                 margin-bottom: 20px;
             }
-            .nav-pills {
-                flex-wrap: nowrap;
-                overflow-x: auto;
-                padding-bottom: 10px;
+            .language-switcher {
+                top: 15px;
+                right: 15px;
             }
-            .nav-pills .nav-item {
-                flex-shrink: 0;
-            }
-            .tab-content .row {
-                flex-direction: column;
-            }
-            .tab-content .col-lg-6 {
-                margin-top: 20px;
-            }
-            .tab-content .row.g-3 [class^="col-"] {
-                margin-bottom: 15px;
-            }
-            #about .row {
-                flex-direction: column-reverse;
-            }
-            #about img {
-                margin-top: 20px;
-            }
-            .testimonial-card {
-                margin-bottom: 20px;
-            }
-            #contact .row {
-                flex-direction: column;
-            }
-            #contact .ps-lg-5 {
-                padding-left: 0 !important;
-                margin-top: 30px;
-            }
-            .floating-btn {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-                bottom: 20px;
-                right: 20px;
-            }
-            .navbar-brand {
-                font-size: 1rem;
-            }
-            .display-3 {
-                font-size: 2.5rem;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero-section {
-                height: 60vh;
-            }
-            .hero-section h1 {
-                font-size: 1.8rem;
-            }
-            .display-3 {
-                font-size: 2rem;
-            }
-            .btn-lg {
-                font-size: 0.9rem;
-                padding: 8px 16px;
+            .language-switcher select {
+                padding: 4px 7px;
+                font-size: 12px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Перемикач мов -->
+    <div class="language-switcher">
+        <select id="languageSelect">
+            <option value="uk">UA</option>
+            <option value="en">EN</option>
+            <option value="nl">NL</option>
+        </select>
+    </div>
+
     <!-- Навігація -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
         <div class="container">
             <a class="navbar-brand fw-bold" href="#">
-                <i class="fas fa-leaf me-2"></i>LUXURY POTS
-            </a>
+    <i class="fas fa-leaf me-2"></i>
+    <span data-i18n="brand">LUXURY POTS</span>
+</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Головна</a>
+                        <a class="nav-link" href="#gallery" data-i18n="collections">Колекції</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#gallery">Колекції</a>
+                        <a class="nav-link" href="#about" data-i18n="about">Про нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">Про нас</a>
+                        <a class="nav-link" href="#testimonials" data-i18n="reviews">Відгуки</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Відгуки</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Контакти</a>
+                        <a class="nav-link" href="#contact" data-i18n="contact">Контакти</a>
                     </li>
                 </ul>
             </div>
@@ -221,22 +207,20 @@
     <!-- Герой-секція -->
     <section class="hero-section d-flex align-items-center">
         <div class="container text-center">
-            <h1 class="display-3 fw-bold mb-4">Ексклюзивні кашпо з керамограніту</h1>
+            <h1 class="display-3 fw-bold mb-4" data-i18n="hero_title">Ексклюзивні кашпо з керамограніту</h1>
             <div class="gold-line"></div>
-            <p class="lead mb-5">Ручна робота для найвибагливіших клієнтів</p>
-            <a href="#gallery" class="btn btn-gold btn-lg px-5 py-3">Переглянути колекцію</a>
+            <p class="lead mb-5" data-i18n="hero_text">Ручна робота для найвибагливіших клієнтів</p>
+            <a href="#gallery" class="btn btn-gold btn-lg px-5 py-3" data-i18n="hero_button">Переглянути колекцію</a>
         </div>
     </section>
 
     <!-- Галерея -->
-
-</section>
     <section id="gallery" class="py-5 my-5">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Наші колекції</h2>
+                <h2 class="fw-bold" data-i18n="gallery_title">Наші колекції</h2>
                 <div class="gold-line"></div>
-                <p class="text-muted">Кожен виріб - унікальний шедевр</p>
+                <p class="text-muted" data-i18n="gallery_subtitle">Кожен виріб - унікальний шедевр</p>
             </div>
 
             <div class="row g-4">
@@ -245,9 +229,9 @@
                     <div class="product-card card h-100">
                         <img src="Мармурова колекція.jpg" class="card-img-top gallery-img" alt="Мармурове кашпо">
                         <div class="card-body">
-                            <h5 class="card-title">Мармурова колекція</h5>
-                            <p class="card-text text-muted">Елегантні горщики з імітацією натурального мармуру.</p>
-                            <a href="#" class="btn btn-outline-dark">Детальніше</a>
+                            <h5 class="card-title" data-i18n="marble_title">Мармурова колекція</h5>
+                            <p class="card-text text-muted" data-i18n="marble_text">Елегантні горщики з імітацією натурального мармуру.</p>
+                            <a href="#" class="btn btn-outline-dark" data-i18n="details">Детальніше</a>
                         </div>
                     </div>
                 </div>
@@ -257,9 +241,9 @@
                     <div class="product-card card h-100">
                         <img src="Позолочена серія.jpg" class="card-img-top gallery-img" alt="Золоте кашпо">
                         <div class="card-body">
-                            <h5 class="card-title">Позолочена серія</h5>
-                            <p class="card-text text-muted">Роскішні горщики з елементами позолоти.</p>
-                            <a href="#" class="btn btn-outline-dark">Детальніше</a>
+                            <h5 class="card-title" data-i18n="gold_title">Позолочена серія</h5>
+                            <p class="card-text text-muted" data-i18n="gold_text">Роскішні горщики з елементами позолоти.</p>
+                            <a href="#" class="btn btn-outline-dark" data-i18n="details">Детальніше</a>
                         </div>
                     </div>
                 </div>
@@ -269,9 +253,9 @@
                     <div class="product-card card h-100">
                         <img src="Модерн колекція.jpg" class="card-img-top gallery-img" alt="Кубічне кашпо">
                         <div class="card-body">
-                            <h5 class="card-title">Модерн колекція</h5>
-                            <p class="card-text text-muted">Строгі геометричні форми для сучасних інтер'єрів.</p>
-                            <a href="#" class="btn btn-outline-dark">Детальніше</a>
+                            <h5 class="card-title" data-i18n="modern_title">Модерн колекція</h5>
+                            <p class="card-text text-muted" data-i18n="modern_text">Строгі геометричні форми для сучасних інтер'єрів.</p>
+                            <a href="#" class="btn btn-outline-dark" data-i18n="details">Детальніше</a>
                         </div>
                     </div>
                 </div>
@@ -280,22 +264,26 @@
     </section>
 
     <!-- Про нас -->
-    <section id="about" class="py-5 bg-light">
+    < <section id="about" class="py-5 bg-light">
         <div class="container">
+            <div class="row">
+                <div class="col-12 text-center mb-5">  <!-- Додано text-center для центрування -->
+                    <h2 class="fw-bold" data-i18n="about_title">Наша майстерня</h2>
+                    <div class="gold-line mx-auto"></div>  <!-- Додано mx-auto для центрування лінії -->
+                </div>
+            </div>
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <img src="Наша майстерня.jpg" class="img-fluid rounded shadow" alt="Майстер за роботою">
                 </div>
                 <div class="col-lg-6">
-                    <h2 class="fw-bold mb-4">Наша майстерня</h2>
-                    <div class="gold-line"></div>
-                    <p class="mb-4">Ми - сімейна майстерня з Бельгії, яка створює ексклюзивні керамогранітні горщики вручну. Кожен виріб виготовляється з особливою увагою до деталей.</p>
+                    <p class="mb-4" data-i18n="about_text">Ми - сімейна майстерня з Бельгії, яка створює ексклюзивні керамогранітні горщики вручну. Кожен виріб виготовляється з особливою увагою до деталей.</p>
                     <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Використання преміальних матеріалів</li>
-                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Індивідуальний підхід до кожного клієнта</li>
-                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Гарантія якості 5 років</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> <span data-i18n="feature1">Використання преміальних матеріалів</span></li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> <span data-i18n="feature2">Індивідуальний підхід до кожного клієнта</span></li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> <span data-i18n="feature3">Гарантія якості 5 років</span></li>
                     </ul>
-                    <a href="#contact" class="btn btn-gold mt-3">Зв'язатися з нами</a>
+                    <a href="#contact" class="btn btn-gold mt-3" data-i18n="contact_us">Зв'язатися з нами</a>
                 </div>
             </div>
         </div>
@@ -305,11 +293,12 @@
     <section id="testimonials" class="py-5">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Що кажуть наші клієнти</h2>
+                <h2 class="fw-bold" data-i18n="reviews_title">Що кажуть наші клієнти</h2>
                 <div class="gold-line"></div>
             </div>
 
             <div class="row">
+                <!-- Відгук 1 -->
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 p-4">
                         <div class="d-flex mb-3">
@@ -325,10 +314,11 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Замовила горщик для офісу - всі колеги в захваті! Якість виконання на найвищому рівні.</p>
+                        <p data-i18n="review1">Замовила горщик для офісу - всі колеги в захваті! Якість виконання на найвищому рівні.</p>
                     </div>
                 </div>
 
+                <!-- Відгук 2 -->
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 p-4">
                         <div class="d-flex mb-3">
@@ -344,10 +334,11 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Зробили мені кашпо під інтер'єр вілли - виглядає просто фантастично! Рекомендую всім.</p>
+                        <p data-i18n="review2">Зробили мені кашпо під інтер'єр вілли - виглядає просто фантастично! Рекомендую всім.</p>
                     </div>
                 </div>
 
+                <!-- Відгук 3 -->
                 <div class="col-md-4 mb-4">
                     <div class="card h-100 p-4">
                         <div class="d-flex mb-3">
@@ -363,7 +354,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p>Дуже гарний сервіс! Горщики приїхали в ідеальному стані, пакування - як для ювелірних виробів.</p>
+                        <p data-i18n="review3">Дуже гарний сервіс! Горщики приїхали в ідеальному стані, пакування - як для ювелірних виробів.</p>
                     </div>
                 </div>
             </div>
@@ -374,53 +365,66 @@
     <section id="contact" class="py-5 bg-dark text-white">
         <div class="container">
             <div class="text-center mb-5">
-                <h2 class="fw-bold">Зв'язатися з нами</h2>
+                <h2 class="fw-bold" data-i18n="contact_title">Зв'язатися з нами</h2>
                 <div class="gold-line"></div>
-                <p class="text-muted">Замовте індивідуальний проект або задайте питання</p>
+                <p class="text-muted" data-i18n="contact_subtitle">Замовте індивідуальний проект або задайте питання</p>
             </div>
 
             <div class="row">
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <form>
                         <div class="mb-3">
-                            <input type="text" class="form-control bg-transparent text-white border-secondary" placeholder="Ваше ім'я" required>
+                            <input type="text" class="form-control bg-transparent text-white border-secondary" 
+                                   data-placeholder-uk="Ваше ім'я" 
+                                   data-placeholder-en="Your name" 
+                                   data-placeholder-nl="Uw naam" 
+                                   required>
                         </div>
                         <div class="mb-3">
-                            <input type="email" class="form-control bg-transparent text-white border-secondary" placeholder="Email" required>
+                            <input type="email" class="form-control bg-transparent text-white border-secondary" 
+                                   data-placeholder-uk="Email" 
+                                   data-placeholder-en="Email" 
+                                   data-placeholder-nl="Email" 
+                                   required>
                         </div>
                         <div class="mb-3">
-                            <input type="tel" class="form-control bg-transparent text-white border-secondary" placeholder="Телефон">
+                            <input type="tel" class="form-control bg-transparent text-white border-secondary" 
+                                   data-placeholder-uk="Телефон" 
+                                   data-placeholder-en="Phone" 
+                                   data-placeholder-nl="Telefoon">
                         </div>
                         <div class="mb-3">
-                            <textarea class="form-control bg-transparent text-white border-secondary" rows="5" placeholder="Повідомлення" required></textarea>
+                            <textarea class="form-control bg-transparent text-white border-secondary" rows="5" 
+                                      data-placeholder-uk="Повідомлення" 
+                                      data-placeholder-en="Message" 
+                                      data-placeholder-nl="Bericht" 
+                                      required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-gold w-100 py-3">Надіслати запит</button>
+                        <button type="submit" class="btn btn-gold w-100 py-3" data-i18n="send_request">Надіслати запит</button>
                     </form>
                 </div>
 
                 <div class="col-lg-6">
                     <div class="ps-lg-5">
-                        <h4 class="mb-4">Контактна інформація</h4>
+                        <h4 class="mb-4" data-i18n="contact_info">Контактна інформація</h4>
                         <ul class="list-unstyled">
                             <li class="mb-3">
                                 <i class="fas fa-map-marker-alt text-gold me-3"></i> 
-                                Бельгія, Брюссель, вул. Декоративна, 42
+                                <span data-i18n="address">Бельгія, Брюссель, вул. Декоративна, 42</span>
                             </li>
                             <li class="mb-3">
-                                <i class="fas fa-phone text-gold me-3"></i> 
-                                +32 123 456 789
+                                <i class="fas fa-phone text-gold me-3"></i> +32 123 456 789
                             </li>
                             <li class="mb-3">
-                                <i class="fas fa-envelope text-gold me-3"></i> 
-                                info@luxurypots.be
+                                <i class="fas fa-envelope text-gold me-3"></i> info@luxurypots.be
                             </li>
                             <li class="mb-3">
                                 <i class="fas fa-clock text-gold me-3"></i> 
-                                Пн-Пт: 10:00 - 18:00
+                                <span data-i18n="work_hours">Пн-Пт: 10:00 - 18:00</span>
                             </li>
                         </ul>
 
-                        <h4 class="mt-5 mb-3">Соціальні мережі</h4>
+                        <h4 class="mt-5 mb-3" data-i18n="social_networks">Соціальні мережі</h4>
                         <div>
                             <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                             <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
@@ -436,7 +440,7 @@
     <!-- Футер -->
     <footer class="py-4">
         <div class="container text-center">
-            <p class="mb-0">&copy; 2023 Luxury Pots. Усі права захищені.</p>
+            <p class="mb-0" data-i18n="copyright">&copy; 2023 Luxury Pots. Усі права захищені.</p>
         </div>
     </footer>
 
@@ -448,24 +452,183 @@
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        // Плавна прокрутка для навігації
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Мультимовність
+        const translations = {
+            uk: {
+                brand: "LUXURY POTS",
+                collections: "Колекції",
+                about: "Про нас",
+                reviews: "Відгуки",
+                contact: "Контакти",
+                hero_title: "Ексклюзивні кашпо з керамограніту",
+                hero_text: "Ручна робота для найвибагливіших клієнтів",
+                hero_button: "Переглянути колекцію",
+                gallery_title: "Наші колекції",
+                gallery_subtitle: "Кожен виріб - унікальний шедевр",
+                marble_title: "Мармурова колекція",
+                marble_text: "Елегантні горщики з імітацією натурального мармуру.",
+                gold_title: "Позолочена серія",
+                gold_text: "Роскішні горщики з елементами позолоти.",
+                modern_title: "Модерн колекція",
+                modern_text: "Строгі геометричні форми для сучасних інтер'єрів.",
+                details: "Детальніше",
+                about_title: "Наша майстерня",
+                about_text: "Ми - сімейна майстерня з Бельгії, яка створює ексклюзивні керамогранітні горщики вручну. Кожен виріб виготовляється з особливою увагою до деталей.",
+                feature1: "Використання преміальних матеріалів",
+                feature2: "Індивідуальний підхід до кожного клієнта",
+                feature3: "Гарантія якості 5 років",
+                contact_us: "Зв'язатися з нами",
+                reviews_title: "Що кажуть наші клієнти",
+                review1: "Замовила горщик для офісу - всі колеги в захваті! Якість виконання на найвищому рівні.",
+                review2: "Зробили мені кашпо під інтер'єр вілли - виглядає просто фантастично! Рекомендую всім.",
+                review3: "Дуже гарний сервіс! Горщики приїхали в ідеальному стані, пакування - як для ювелірних виробів.",
+                contact_title: "Зв'язатися з нами",
+                contact_subtitle: "Замовте індивідуальний проект або задайте питання",
+                contact_info: "Контактна інформація",
+                address: "Бельгія, Брюссель, вул. Декоративна, 42",
+                work_hours: "Пн-Пт: 10:00 - 18:00",
+                social_networks: "Соціальні мережі",
+                send_request: "Надіслати запит",
+                copyright: "&copy; 2023 Luxury Pots. Усі права захищені."
+            },
+            en: {
+                brand: "LUXURY POTS",
+                collections: "Collections",
+                about: "About",
+                reviews: "Reviews",
+                contact: "Contact",
+                hero_title: "Exclusive ceramic planters",
+                hero_text: "Handcrafted for the most demanding clients",
+                hero_button: "View collection",
+                gallery_title: "Our collections",
+                gallery_subtitle: "Each piece is a unique masterpiece",
+                marble_title: "Marble Collection",
+                marble_text: "Elegant pots with natural marble imitation.",
+                gold_title: "Gilded Series",
+                gold_text: "Luxury pots with gilded elements.",
+                modern_title: "Modern Collection",
+                modern_text: "Strict geometric shapes for modern interiors.",
+                details: "Details",
+                about_title: "Our workshop",
+                about_text: "We are a family workshop from Belgium that creates exclusive ceramic planters by hand. Each product is made with special attention to detail.",
+                feature1: "Use of premium materials",
+                feature2: "Individual approach to each client",
+                feature3: "5-year quality guarantee",
+                contact_us: "Contact us",
+                reviews_title: "What our clients say",
+                review1: "Ordered a planter for the office - all colleagues are delighted! The quality of execution is at the highest level.",
+                review2: "They made a planter for my villa's interior - it looks just fantastic! I recommend to everyone.",
+                review3: "Very good service! The pots arrived in perfect condition, the packaging is like for jewelry.",
+                contact_title: "Contact us",
+                contact_subtitle: "Order a custom project or ask a question",
+                contact_info: "Contact information",
+                address: "Belgium, Brussels, Dekoratyvna str., 42",
+                work_hours: "Mon-Fri: 10:00 - 18:00",
+                social_networks: "Social networks",
+                send_request: "Send request",
+                copyright: "&copy; 2023 Luxury Pots. All rights reserved."
+            },
+            nl: {
+                brand: "LUXE POTTEN",
+                collections: "Collecties",
+                about: "Over ons",
+                reviews: "Reviews",
+                contact: "Contact",
+                hero_title: "Exclusieve keramische plantenbakken",
+                hero_text: "Handgemaakt voor de meest veeleisende klanten",
+                hero_button: "Bekijk collectie",
+                gallery_title: "Onze collecties",
+                gallery_subtitle: "Elk stuk is een uniek meesterwerk",
+                marble_title: "Marmeren Collectie",
+                marble_text: "Elegante potten met imitatie van natuurlijk marmer.",
+                gold_title: "Vergulde Serie",
+                gold_text: "Luxe potten met vergulde elementen.",
+                modern_title: "Moderne Collectie",
+                modern_text: "Strenge geometrische vormen voor moderne interieurs.",
+                details: "Details",
+                about_title: "Onze werkplaats",
+                about_text: "Wij zijn een familie-atelier uit België dat exclusieve keramische plantenbakken met de hand maakt. Elk product wordt met bijzondere aandacht voor detail gemaakt.",
+                feature1: "Gebruik van premium materialen",
+                feature2: "Individuele benadering van elke klant",
+                feature3: "5-jarige kwaliteitsgarantie",
+                contact_us: "Contacteer ons",
+                reviews_title: "Wat onze klanten zeggen",
+                review1: "Bestelde een plantenbak voor het kantoor - alle collega's zijn enthousiast! De uitvoeringskwaliteit is op het hoogste niveau.",
+                review2: "Ze maakten een plantenbak voor het interieur van mijn villa - het ziet er gewoon fantastisch uit! Ik beveel het aan iedereen aan.",
+                review3: "Zeer goede service! De potten kwamen in perfecte staat aan, de verpakking is zoals voor sieraden.",
+                contact_title: "Contacteer ons",
+                contact_subtitle: "Bestel een aangepast project of stel een vraag",
+                contact_info: "Contactgegevens",
+                address: "België, Brussel, Decoratieve straat, 42",
+                work_hours: "Ma-Vr: 10:00 - 18:00",
+                social_networks: "Sociale netwerken",
+                send_request: "Verzend verzoek",
+                copyright: "&copy; 2023 Luxury Pots. Alle rechten voorbehouden."
+            }
+        };
+
+        // Функція зміни мови
+        function changeLanguage(lang) {
+            // Оновлюємо всі елементи з data-i18n атрибутом
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Оновлюємо placeholder для форми
+            document.querySelectorAll('input, textarea').forEach(element => {
+                const placeholderKey = element.getAttribute(`data-placeholder-${lang}`);
+                if (placeholderKey) {
+                    element.setAttribute('placeholder', placeholderKey);
+                }
+            });
+        }
+
+        // Ініціалізація
+        document.addEventListener('DOMContentLoaded', () => {
+            const languageSelect = document.getElementById('languageSelect');
+            
+            // Встановлюємо мову за замовчуванням
+            let currentLang = localStorage.getItem('language') || 'uk';
+            languageSelect.value = currentLang;
+            changeLanguage(currentLang);
+
+            // Обробник зміни мови
+            languageSelect.addEventListener('change', (e) => {
+                currentLang = e.target.value;
+                localStorage.setItem('language', currentLang);
+                changeLanguage(currentLang);
+            });
+
+            // Плавна прокрутка для всіх посилань
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
                 });
             });
-        });
 
-        // Зміна навігації при скролі
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 100) {
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                navbar.classList.remove('navbar-scrolled');
-            }
+            // Додаємо клас active для поточного розділу в навігації
+            const navLinks = document.querySelectorAll('.navbar-nav a');
+            window.addEventListener('scroll', () => {
+                const fromTop = window.scrollY + 100;
+                navLinks.forEach(link => {
+                    const section = document.querySelector(link.getAttribute('href'));
+                    if (section && section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
+                        link.classList.add('active');
+                    } else {
+                        link.classList.remove('active');
+                    }
+                });
+            });
         });
     </script>
 </body>
