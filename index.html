@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Pots | Ексклюзивні керамогранітні кашпо</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome (іконки) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Raleway:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark: #1a1a1a;
+        }
+        body {
+            font-family: 'Raleway', sans-serif;
+            background: #f9f9f9;
+            color: #333;
+        }
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+        .navbar {
+            background: rgba(26, 26, 26, 0.9) !important;
+            backdrop-filter: blur(10px);
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1600566752227-8f3b9a83f0a4?ixlib=rb-4.0.3');
+            background-size: cover;
+            height: 100vh;
+            color: white;
+        }
+        .product-card {
+            transition: all 0.3s ease;
+            border: none;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .gold-line {
+            height: 3px;
+            width: 100px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: white;
+            border: none;
+        }
+        .btn-gold:hover {
+            background: #c19b2e;
+            color: white;
+        }
+        .gallery-img {
+            height: 600px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .gallery-img:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            background: var(--dark);
+            color: white;
+        }
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .social-icon:hover {
+            color: var(--gold);
+        }
+        .floating-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 99;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--gold);
+            color: white;
+            font-size: 1.5rem;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Мобільні стилі */
+        @media (max-width: 768px) {
+            .hero-section {
+                height: 70vh;
+                padding-top: 60px;
+            }
+            .hero-section h1 {
+                font-size: 2rem;
+                margin-bottom: 15px;
+            }
+            .hero-section .lead {
+                font-size: 1rem;
+            }
+            .hero-section .btn-lg {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+            .gold-line {
+                width: 70px;
+                margin: 15px auto;
+            }
+            .gallery-img {
+                height: 300px;
+            }
+            .product-card {
+                margin-bottom: 20px;
+            }
+            .nav-pills {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            .nav-pills .nav-item {
+                flex-shrink: 0;
+            }
+            .tab-content .row {
+                flex-direction: column;
+            }
+            .tab-content .col-lg-6 {
+                margin-top: 20px;
+            }
+            .tab-content .row.g-3 [class^="col-"] {
+                margin-bottom: 15px;
+            }
+            #about .row {
+                flex-direction: column-reverse;
+            }
+            #about img {
+                margin-top: 20px;
+            }
+            .testimonial-card {
+                margin-bottom: 20px;
+            }
+            #contact .row {
+                flex-direction: column;
+            }
+            #contact .ps-lg-5 {
+                padding-left: 0 !important;
+                margin-top: 30px;
+            }
+            .floating-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            .navbar-brand {
+                font-size: 1rem;
+            }
+            .display-3 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-section {
+                height: 60vh;
+            }
+            .hero-section h1 {
+                font-size: 1.8rem;
+            }
+            .display-3 {
+                font-size: 2rem;
+            }
+            .btn-lg {
+                font-size: 0.9rem;
+                padding: 8px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навігація -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-leaf me-2"></i>LUXURY POTS
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">Головна</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#gallery">Колекції</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Про нас</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#testimonials">Відгуки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Контакти</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Герой-секція -->
+    <section class="hero-section d-flex align-items-center">
+        <div class="container text-center">
+            <h1 class="display-3 fw-bold mb-4">Ексклюзивні кашпо з керамограніту</h1>
+            <div class="gold-line"></div>
+            <p class="lead mb-5">Ручна робота для найвибагливіших клієнтів</p>
+            <a href="#gallery" class="btn btn-gold btn-lg px-5 py-3">Переглянути колекцію</a>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+<!-- Модельний ряд -->
+<section id="models" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Модельний ряд</h2>
+            <div class="gold-line"></div>
+            <p class="text-muted">Оберіть ідеальний варіант для вашого інтер'єру</p>
+        </div>
+
+        <!-- Навігація по моделям -->
+        <ul class="nav nav-pills justify-content-center mb-5" id="modelTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="alpha-tab" data-bs-toggle="pill" data-bs-target="#alpha" type="button">Альфа</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="beta-tab" data-bs-toggle="pill" data-bs-target="#beta" type="button">Бета</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="omega-tab" data-bs-toggle="pill" data-bs-target="#omega" type="button">Омега</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="delta-tab" data-bs-toggle="pill" data-bs-target="#delta" type="button">Дельта</button>
+            </li>
+        </ul>
+
+        <!-- Вміст моделей -->
+        <div class="tab-content" id="modelTabsContent">
+            <!-- Модель Альфа -->
+            <div class="tab-pane fade show active" id="alpha" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <img src="models/alpha/alpha-1.jpg" class="img-fluid rounded shadow" alt="Альфа модель вид спереду">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/alpha/alpha-2.jpg" class="img-fluid rounded shadow" alt="Альфа модель вид збоку">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/alpha/alpha-3.jpg" class="img-fluid rounded shadow" alt="Альфа модель деталі">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/alpha/alpha-4.jpg" class="img-fluid rounded shadow" alt="Альфа модель в інтер'єрі">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/alpha/alpha-5.jpg" class="img-fluid rounded shadow" alt="Альфа модель з рослиною">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/alpha/alpha-6.jpg" class="img-fluid rounded shadow" alt="Альфа модель комплект">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+                        <h3>Модель "Альфа"</h3>
+                        <p>Класичний горщик з керамограніту у мраморному стилі. Ідеально підходить для офісів та сучасних вілл.</p>
+                        <ul>
+                            <li>Розміри: 20×20×25 см</li>
+                            <li>Матеріали: керамограніт, гіпс</li>
+                            <li>Кольори: білий мармур, сірий мармур</li>
+                            <li>Вартість: від 1500 грн</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-gold mt-3">Замовити</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модель Бета -->
+            <div class="tab-pane fade" id="beta" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <img src="models/beta/beta-1.jpg" class="img-fluid rounded shadow" alt="Бета модель вид спереду">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/beta/beta-2.jpg" class="img-fluid rounded shadow" alt="Бета модель вид збоку">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/beta/beta-3.jpg" class="img-fluid rounded shadow" alt="Бета модель деталі">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/beta/beta-4.jpg" class="img-fluid rounded shadow" alt="Бета модель в інтер'єрі">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/beta/beta-5.jpg" class="img-fluid rounded shadow" alt="Бета модель з рослиною">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/beta/beta-6.jpg" class="img-fluid rounded shadow" alt="Бета модель комплект">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+                        <h3>Модель "Бета"</h3>
+                        <p>Сучасний кубічний дизайн з геометричним візерунком. Підходить для мінімалістичних інтер'єрів.</p>
+                        <ul>
+                            <li>Розміри: 18×18×18 см</li>
+                            <li>Матеріали: керамограніт, бетон</li>
+                            <li>Кольори: чорний, білий, бежевий</li>
+                            <li>Вартість: від 1700 грн</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-gold mt-3">Замовити</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модель Омега -->
+            <div class="tab-pane fade" id="omega" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <img src="models/omega/omega-1.jpg" class="img-fluid rounded shadow" alt="Омега модель вид спереду">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/omega/omega-2.jpg" class="img-fluid rounded shadow" alt="Омега модель вид збоку">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/omega/omega-3.jpg" class="img-fluid rounded shadow" alt="Омега модель деталі">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/omega/omega-4.jpg" class="img-fluid rounded shadow" alt="Омега модель в інтер'єрі">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/omega/omega-5.jpg" class="img-fluid rounded shadow" alt="Омега модель з рослиною">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/omega/omega-6.jpg" class="img-fluid rounded shadow" alt="Омега модель комплект">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+                        <h3>Модель "Омега"</h3>
+                        <p>Роскошний горщик з елементами позолоти. Створений для ексклюзивних інтер'єрів.</p>
+                        <ul>
+                            <li>Розміри: 22×22×30 см</li>
+                            <li>Матеріали: керамограніт, латунь</li>
+                            <li>Кольори: золотий, бронзовий</li>
+                            <li>Вартість: від 2500 грн</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-gold mt-3">Замовити</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Модель Дельта -->
+            <div class="tab-pane fade" id="delta" role="tabpanel">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <img src="models/delta/delta-1.jpg" class="img-fluid rounded shadow" alt="Дельта модель вид спереду">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/delta/delta-2.jpg" class="img-fluid rounded shadow" alt="Дельта модель вид збоку">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/delta/delta-3.jpg" class="img-fluid rounded shadow" alt="Дельта модель деталі">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/delta/delta-4.jpg" class="img-fluid rounded shadow" alt="Дельта модель в інтер'єрі">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/delta/delta-5.jpg" class="img-fluid rounded shadow" alt="Дельта модель з рослиною">
+                            </div>
+                            <div class="col-md-6">
+                                <img src="models/delta/delta-6.jpg" class="img-fluid rounded shadow" alt="Дельта модель комплект">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 mt-4 mt-lg-0">
+                        <h3>Модель "Дельта"</h3>
+                        <p>Мінімалістичний горщик з текстурою під бетон. Для любителів індустріального стилю.</p>
+                        <ul>
+                            <li>Розміри: 15×15×20 см</li>
+                            <li>Матеріали: керамограніт, бетон</li>
+                            <li>Кольори: сірий, антрацитовий</li>
+                            <li>Вартість: від 1300 грн</li>
+                        </ul>
+                        <a href="#contact" class="btn btn-gold mt-3">Замовити</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <section id="gallery" class="py-5 my-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Наші колекції</h2>
+                <div class="gold-line"></div>
+                <p class="text-muted">Кожен виріб - унікальний шедевр</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Картка товару 1 -->
+                <div class="col-md-4">
+                    <div class="product-card card h-100">
+                        <img src="Мармурова колекція.jpg" class="card-img-top gallery-img" alt="Мармурове кашпо">
+                        <div class="card-body">
+                            <h5 class="card-title">Мармурова колекція</h5>
+                            <p class="card-text text-muted">Елегантні горщики з імітацією натурального мармуру.</p>
+                            <a href="#" class="btn btn-outline-dark">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Картка товару 2 -->
+                <div class="col-md-4">
+                    <div class="product-card card h-100">
+                        <img src="Позолочена серія.jpg" class="card-img-top gallery-img" alt="Золоте кашпо">
+                        <div class="card-body">
+                            <h5 class="card-title">Позолочена серія</h5>
+                            <p class="card-text text-muted">Роскішні горщики з елементами позолоти.</p>
+                            <a href="#" class="btn btn-outline-dark">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Картка товару 3 -->
+                <div class="col-md-4">
+                    <div class="product-card card h-100">
+                        <img src="Модерн колекція.jpg" class="card-img-top gallery-img" alt="Кубічне кашпо">
+                        <div class="card-body">
+                            <h5 class="card-title">Модерн колекція</h5>
+                            <p class="card-text text-muted">Строгі геометричні форми для сучасних інтер'єрів.</p>
+                            <a href="#" class="btn btn-outline-dark">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Про нас -->
+    <section id="about" class="py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <img src="Наша майстерня.jpg" class="img-fluid rounded shadow" alt="Майстер за роботою">
+                </div>
+                <div class="col-lg-6">
+                    <h2 class="fw-bold mb-4">Наша майстерня</h2>
+                    <div class="gold-line"></div>
+                    <p class="mb-4">Ми - сімейна майстерня з Бельгії, яка створює ексклюзивні керамогранітні горщики вручну. Кожен виріб виготовляється з особливою увагою до деталей.</p>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Використання преміальних матеріалів</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Індивідуальний підхід до кожного клієнта</li>
+                        <li class="mb-2"><i class="fas fa-check text-success me-2"></i> Гарантія якості 5 років</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-gold mt-3">Зв'язатися з нами</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Відгуки -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Що кажуть наші клієнти</h2>
+                <div class="gold-line"></div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 p-4">
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-quote-left text-gold me-3"></i>
+                            <div>
+                                <h5>Ольга К.</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Замовила горщик для офісу - всі колеги в захваті! Якість виконання на найвищому рівні.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 p-4">
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-quote-left text-gold me-3"></i>
+                            <div>
+                                <h5>Марк Т.</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Зробили мені кашпо під інтер'єр вілли - виглядає просто фантастично! Рекомендую всім.</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 p-4">
+                        <div class="d-flex mb-3">
+                            <i class="fas fa-quote-left text-gold me-3"></i>
+                            <div>
+                                <h5>Анна Л.</h5>
+                                <div class="text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p>Дуже гарний сервіс! Горщики приїхали в ідеальному стані, пакування - як для ювелірних виробів.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакти -->
+    <section id="contact" class="py-5 bg-dark text-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Зв'язатися з нами</h2>
+                <div class="gold-line"></div>
+                <p class="text-muted">Замовте індивідуальний проект або задайте питання</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <form>
+                        <div class="mb-3">
+                            <input type="text" class="form-control bg-transparent text-white border-secondary" placeholder="Ваше ім'я" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control bg-transparent text-white border-secondary" placeholder="Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control bg-transparent text-white border-secondary" placeholder="Телефон">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control bg-transparent text-white border-secondary" rows="5" placeholder="Повідомлення" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gold w-100 py-3">Надіслати запит</button>
+                    </form>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="ps-lg-5">
+                        <h4 class="mb-4">Контактна інформація</h4>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <i class="fas fa-map-marker-alt text-gold me-3"></i> 
+                                Бельгія, Брюссель, вул. Декоративна, 42
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-phone text-gold me-3"></i> 
+                                +32 123 456 789
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-envelope text-gold me-3"></i> 
+                                info@luxurypots.be
+                            </li>
+                            <li class="mb-3">
+                                <i class="fas fa-clock text-gold me-3"></i> 
+                                Пн-Пт: 10:00 - 18:00
+                            </li>
+                        </ul>
+
+                        <h4 class="mt-5 mb-3">Соціальні мережі</h4>
+                        <div>
+                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-pinterest"></i></a>
+                            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="py-4">
+        <div class="container text-center">
+            <p class="mb-0">&copy; 2023 Luxury Pots. Усі права захищені.</p>
+        </div>
+    </footer>
+
+    <!-- Кнопка "Наверх" -->
+    <button class="floating-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Плавна прокрутка для навігації
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Зміна навігації при скролі
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('navbar-scrolled');
+            } else {
+                navbar.classList.remove('navbar-scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
