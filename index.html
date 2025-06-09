@@ -57,18 +57,97 @@
             z-index: 2;
             width: 80%;
         }
+		/* Головні стилі для градієнтних заголовків */
+		.gradient-title {
+			font-size: 4rem;
+			font-weight: 700;
+			margin-bottom: 2rem;
+			background: linear-gradient(45deg, #ffffff, var(--gold));
+			-webkit-background-clip: text;
+			background-clip: text;
+			-webkit-text-fill-color: transparent;
+			text-fill-color: transparent;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+			line-height: 1.2;
+			position: relative;
+			display: inline-block; /* Щоб псевдоелемент не був на всю ширину */
+			overflow: hidden; /* Ховаємо "підсвічування" що виходить за межі */
+		}
+		.gradient-title::after {
+			content: '';
+			position: absolute;
+			bottom: -5px;
+			left: 0;
+			width: 0;
+			height: 2px;
+			background: var(--gold);
+			transition: width 0.7s ease;
+			animation: textUnderline 0.7s ease forwards 1.2s;
+		}
+		.gradient-title:hover::after {
+			width: 100%; /* Повна ширина при наведенні */
+		}
+
+		/* Або анімація при завантаженні (без наведення) */
+		.gradient-title.animate::after {
+			animation: expandLine 0.7s ease-out forwards;
+			animation-delay: 0.8s;
+		}
+		/* Градієнтні заголовки */
+		.hero-title {
+			font-size: 4rem;
+			font-weight: 700;
+			margin-bottom: 2rem;
+			background: linear-gradient(45deg,#B0892D, var(--gold), #fff, var(--gold),#B0892D);
+			-webkit-background-clip: text;
+			-webkit-text-fill-color: transparent;
+			background-clip: text;
+			text-fill-color: transparent;
+			text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+			
+		}
+
+		/* Анімація появи */
+		@keyframes fadeInUp {
+			from {
+				opacity: 0;
+				transform: translateY(30px);
+			}
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+		.fade-in-element {
+			opacity: 0;
+			animation: fadeInUp 1s ease forwards 0.3s;
+		}
+		@keyframes expandLine {
+			from { width: 0; }
+			to { width: 100px; }
+		}
+		@keyframes textUnderline {
+			from { width: 0; }
+			to { width: 100%; }
+		}
+		.hero-text {
+			opacity: 0;
+			transform: translateY(50px);
+			animation: fadeInUp 2s ease forwards;
+			
+		}
         
         /* Мовний перемикач */
 		.language-dropdown {
-    margin-left: auto; /* Вирівнює праворуч */
-    position: relative; /* Для коректного позиціонування */
-}
+			margin-left: auto; /* Вирівнює праворуч */
+			position: relative; /* Для коректного позиціонування */
+		}
         .language-dropdown .dropdown-menu {
             background: var(--dark);
             border: 1px solid var(--gold);
 			left: auto !important;
-    right: 0 !important; /* Випадає від правого краю */
-        }
+			right: 0 !important; /* Випадає від правого краю */
+		}
         .language-dropdown .dropdown-item {
             color: white;
         }
@@ -117,12 +196,31 @@
             100% { left: 100%; }
         }
         .btn-gold {
-            background: var(--gold);
+            background: linear-gradient(90deg,#B0892D, #D3AF37, var(--gold), var(--gold),var(--gold),var(--gold),#D3AF37,#B0892D);
             color: white;
             border: none;
+			transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+		.btn-gold::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f4d03f, var(--gold));
+            transition: left 0.1s ease;
+            z-index: -1;
+        }
+         .btn-gold:hover::before {
+            left: 0;
+        }
+        
         .btn-gold:hover {
-            background: #c19b2e;
+            transform: translateY(-1px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
             color: white;
         }
         .gallery-img {
@@ -170,6 +268,11 @@
             border: none;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
+		@media (max-width: 992px) {
+			.gradient-title {
+				font-size: 3rem;
+			}
+		}
         @media (max-width: 768px) {
             .hero-slider {
                 height: 70vh;
@@ -180,10 +283,49 @@
             .hero-content h1 {
                 font-size: 2rem;
             }
+			.hero-title {
+				font-size: 2.5rem; /* Менший розмір для телефонів */
+			}
+			.gradient-title {
+				font-size: 2.2rem;
+				margin-bottom: 1.5rem;
+			}
+        }
+		 /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(212, 175, 55, 0.3);
+            border-top: 3px solid var(--gold);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+<!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
     <!-- Навігація -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3">
         <div class="container">
@@ -230,27 +372,33 @@
     <div class="hero-slider">
         <div class="hero-slide active" style="background-image: url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
             <div class="hero-content">
-                <h1 class="display-3 fw-bold mb-4" data-translate="main_title">Ексклюзивні кашпо з керамограніту</h1>
+			 <div class="hero-text">
+                <h1 class="hero-title" data-translate="main_title">Ексклюзивні кашпо з керамограніту</h1>
                 <div class="gold-line"></div>
                 <p class="lead mb-5" data-translate="main_subtitle">Ручна робота для найвибагливіших клієнтів</p>
                 <a href="#gallery" class="btn btn-gold btn-lg px-5 py-3" data-translate="view_collection">Переглянути колекцію</a>
-            </div>
+             </div>
+			</div>
         </div>
         <div class="hero-slide" style="background-image: url('https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');">
             <div class="hero-content">
-                <h1 class="display-3 fw-bold mb-4" data-translate="custom_title">Індивідуальні рішення</h1>
+			<div class="hero-text">
+                <h1 class="hero-title" data-translate="custom_title">Індивідуальні рішення</h1>
                 <div class="gold-line"></div>
                 <p class="lead mb-5" data-translate="custom_subtitle">Створюємо кашпо під ваш інтер'єр</p>
                 <a href="#contact" class="btn btn-gold btn-lg px-5 py-3" data-translate="order_consultation">Замовити консультацію</a>
             </div>
+			</div>
         </div>
-        <div class="hero-slide" style="background-image: url('Наша майстерня.jpg');">
+        <div class="hero-slide" style="background-image: url('5/images/slide2.jpg');">
             <div class="hero-content">
-                <h1 class="display-3 fw-bold mb-4" data-translate="quality_title">Європейська якість</h1>
-                <div class="gold-line"></div>
+			<div class="hero-text">
+                <h1 class="hero-title" data-translate="quality_title">Європейська якість</h1>
+                <div class="gold-line mx-auto"></div>
                 <p class="lead mb-5" data-translate="quality_subtitle">Виготовлено в Бельгії з натуральних матеріалів</p>
                 <a href="#about" class="btn btn-gold btn-lg px-5 py-3" data-translate="learn_more">Дізнатися більше</a>
             </div>
+			</div>
         </div>
     </div>
 
@@ -734,6 +882,15 @@
             slides[currentSlide].classList.add('active');
         }
         setInterval(changeSlide, 5000);
+		window.addEventListener('load', function() {
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    setTimeout(() => {
+        loadingOverlay.style.opacity = '0';
+        setTimeout(() => {
+            loadingOverlay.style.display = 'none';
+        }, 500);
+    }, 1000); // Затримка 1 секунда після завантаження
+});
     </script>
 </body>
 </html>
